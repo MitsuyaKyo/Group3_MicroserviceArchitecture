@@ -1,6 +1,6 @@
 'use strict';
 
-const generalMockup = () => {
+const generalArticle = () => {
     const model = {
         title:``,
         author:``,
@@ -11,5 +11,5 @@ const generalMockup = () => {
 }
 
 module.exports = {
-    generalMockup: generalMockup
+    generalArticle: generalArticle
 }

@@ -1,25 +1,24 @@
 'use strict';
 
-const wrapper = require('../../../../helpers/utils/wrapper');
 const Article = require('./domain');
 
-const getOneArticle = async (articleId) => {
-    const getData = async () => {
-        const article = new Article();
-        const result = await article.viewOneArticle(articleId);
+const getOneArticle = async (queryParam) => {
+    const getData = async (queryParam) => {
+        const article = new Article(queryParam);
+        const result = await article.viewOneArticle();
         return result;
     }
-    const result = await getData();
+    const result = await getData(queryParam);
     return result;
 }
 
-const getManyArticle = async (parameter) => {
-    const getData = async () => {
-        const article = new Article();
-        const result = await article.viewManyArticle(parameter);
+const getManyArticle = async (queryParam) => {
+    const getData = async (queryParam) => {
+        const article = new Article(queryParam);
+        const result = await article.viewManyArticle();
         return result;
     }
-    const result = await getData();
+    const result = await getData(queryParam);
     return result;
 }
 

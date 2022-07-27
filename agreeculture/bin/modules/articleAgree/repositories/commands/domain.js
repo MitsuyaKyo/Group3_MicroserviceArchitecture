@@ -1,21 +1,23 @@
 'use strict';
 
 const nconf = require('nconf');
-const command = require('./command');
 const query = require('../queries/query');
 const wrapper = require('../../../../helpers/utils/wrapper');
 const config = require('../../../../infra/configs/global_config');
-const validate = require('validate.js');
 const logger = require("../../../../helpers/utils/logger");
 const jwtAuth = require('../../../../auth/jwt_auth_helper');
 const commonUtil = require('../../../../helpers/utils/common');
 const algorithm = 'aes-256-ctr';
 const secretKey = 'Dom@in2018';
 
+const command = require('./command');
+const validate = require('validate.js');
+const model = require('./command_model');
+
 class Article{
     async addNewArticle(payload){
         const data = [payload];
-        let view = model.generalMockup();
+        let view = model.generalArticle();
         view = data.reduce((accumulator, value) => {
             if(!validate.isEmpty(value.title)){accumulator.title = value.title;}
             if(!validate.isEmpty(value.author)){accumulator.author = value.author;}

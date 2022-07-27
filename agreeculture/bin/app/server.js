@@ -50,9 +50,9 @@ let AppServer = function(){
     });
 
     //article
-    this.server.get('/api/v1/article/getmany/', articleAgreeHandler.getManyArticle);
-    this.server.get('/api/v1/article/getone/', articleAgreeHandler.getOneArticle);
-    this.server.post('/api/v1/article/postarticle/', articleAgreeHandler.postArticle);
+    this.server.get('/api/v1/article/', articleAgreeHandler.getManyArticle);
+    this.server.get('/api/v1/article/:title', articleAgreeHandler.getOneArticle);
+    this.server.post('/api/v1/article', articleAgreeHandler.postArticle);
 
     //login and register
     this.server.post('/api/v1/register',  usersHandler.register);//basicAuth.isAuthenticated,

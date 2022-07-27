@@ -1,31 +1,35 @@
 'use strict';
 
-const nconf = require('nconf');
-const rp = require('request-promise');
-const model = require('./query_model');
+
 const query = require('./query');
 const wrapper = require('../../../../helpers/utils/wrapper');
-const config = require('../../../../infra/configs/global_config');
-const validate = require('validate.js');
-const logger = require("../../../../helpers/utils/logger");
 
 class Article{
+    constructor(param){
+        this.title = param.title;
+        this.author = param.author;
+        this.article_file = param.article_file;
 
-    async viewOneArticle(articleId){
-        const article = await query.findById(articleId);
-        const { data } = article
-        if(article.err){
-            return wrapper.error('error', 'Can not find article!', 404);
-        }
-        return wrapper.data(data, '', 200);
     }
-    async viewManyArticle(parameter){
-        const article = await query.findManyArticle(parameter);
-        const { data } = article
-        if(article.err){
-            return wrapper.error('error', 'Can not find any article!', 404);
+    async viewOneArticle(){
+        const param = {"title":this.title};
+        const result = await query.findOneArticle(param);
+
+        if(result.err){
+            return result;
+        }else{
+            return wrapper.data(result.data);
         }
-        return wrapper.data(data, '', 200);
+    }
+    async viewManyArticle(){
+        const param = {};
+        const result = await query.findManyArticle(param);
+
+        if(result.err){
+            return result;
+        }else{
+            return wrapper.data(result.data);
+        }
     }
 
 }

@@ -1,19 +1,15 @@
 'use strict';
 
-const generalMockup = () => {
+const generalArticle = () => {
     const model = {
-        id:``,
         title:``,
         author:``,
-        article_file:``,
-        createdAt:``,
-        createdBy:``,
-        updatedAt:``,
-        updatedBy:``      
+        article_file:``
+        
     }
     return model;
 }
 
 module.exports = {
-    generalMockup: generalMockup
+    generalArticle: generalArticle
 }

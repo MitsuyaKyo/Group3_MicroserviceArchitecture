@@ -1,7 +1,6 @@
 'use strict';
 
 const Users = require('./domain');
-const Worker = require('node:worker_threads').Worker;
 
 const getUsers = async (queryParam) => {
     const getQuery = async (queryParam) => {
