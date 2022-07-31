@@ -1,22 +1,15 @@
-version: '3.9'
-
+version: "2"
 services:
-  mongo_db: 
-    image: mongo:latest
-    container_name: db_container
-    restart: always
-    volumes:
-      - mongo_db:/data/db
-  api:
+  web:
     build: .
+    command: npm start
+    volumes:
+      - .:/app
     ports:
-      - 8080:8080
-    environment:
-      PORT: 8080
-      MONGODB_URI: mongodb://mongo_db:27017
-      DB_Name: agree
-      NAME: agree
+      - "8080:8080"
     depends_on:
-      - mongo_db
-volumes:
-  mongo_db: {}
+      - mongo
+    environment:
+      DATABASE_URL: mongodb://172.18.0.2:27017/agree
+  mongo:
+    image: mongo:latest
